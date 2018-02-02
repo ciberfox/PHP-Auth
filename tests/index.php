@@ -66,28 +66,28 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 						$auth->loginWithUsername($_POST['username'], $_POST['password'], $rememberDuration);
 					}
 					else {
-						return 'either email address or username required';
+						return 'Richiesto o username o e-mail';
 					}
 
 					return 'ok';
 				}
 				catch (\Delight\Auth\InvalidEmailException $e) {
-					return 'wrong email address';
+					return 'indirizzo e-mail errato';
 				}
 				catch (\Delight\Auth\UnknownUsernameException $e) {
-					return 'unknown username';
+					return 'username sconosciuto';
 				}
 				catch (\Delight\Auth\AmbiguousUsernameException $e) {
-					return 'ambiguous username';
+					return 'username ambiguo';
 				}
 				catch (\Delight\Auth\InvalidPasswordException $e) {
-					return 'wrong password';
+					return 'password errata';
 				}
 				catch (\Delight\Auth\EmailNotVerifiedException $e) {
-					return 'email address not verified';
+					return 'indirizzo e-mail non verificatod';
 				}
 				catch (\Delight\Auth\TooManyRequestsException $e) {
-					return 'too many requests';
+					return 'troppe richieste';
 				}
 			}
 			else if ($_POST['action'] === 'register') {
@@ -95,7 +95,7 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 					if ($_POST['require_verification'] == 1) {
 						$callback = function ($selector, $token) {
 							echo '<pre>';
-							echo 'Email confirmation';
+							echo 'Conferma e-mail';
 							echo "\n";
 							echo '  >  Selector';
 							echo "\t\t\t\t";
@@ -123,19 +123,19 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 					}
 				}
 				catch (\Delight\Auth\InvalidEmailException $e) {
-					return 'invalid email address';
+					return 'Email non valida';
 				}
 				catch (\Delight\Auth\InvalidPasswordException $e) {
-					return 'invalid password';
+					return 'passowrd non valida';
 				}
 				catch (\Delight\Auth\UserAlreadyExistsException $e) {
-					return 'email address already exists';
+					return 'email già in uso';
 				}
 				catch (\Delight\Auth\DuplicateUsernameException $e) {
-					return 'username already exists';
+					return 'username già in uso';
 				}
 				catch (\Delight\Auth\TooManyRequestsException $e) {
-					return 'too many requests';
+					return 'troppe richieste';
 				}
 			}
 			else if ($_POST['action'] === 'confirmEmail') {
@@ -164,17 +164,17 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 					return 'token expired';
 				}
 				catch (\Delight\Auth\UserAlreadyExistsException $e) {
-					return 'email address already exists';
+					return 'indirizzo email già registrato';
 				}
 				catch (\Delight\Auth\TooManyRequestsException $e) {
-					return 'too many requests';
+					return 'troppe richieste';
 				}
 			}
 			else if ($_POST['action'] === 'resendConfirmationForEmail') {
 				try {
 					$auth->resendConfirmationForEmail($_POST['email'], function ($selector, $token) {
 						echo '<pre>';
-						echo 'Email confirmation';
+						echo 'Verifica email';
 						echo "\n";
 						echo '  >  Selector';
 						echo "\t\t\t\t";
@@ -192,14 +192,14 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 					return 'no request found';
 				}
 				catch (\Delight\Auth\TooManyRequestsException $e) {
-					return 'too many requests';
+					return 'troppe richieste';
 				}
 			}
 			else if ($_POST['action'] === 'resendConfirmationForUserId') {
 				try {
 					$auth->resendConfirmationForUserId($_POST['userId'], function ($selector, $token) {
 						echo '<pre>';
-						echo 'Email confirmation';
+						echo 'Verifica email';
 						echo "\n";
 						echo '  >  Selector';
 						echo "\t\t\t\t";
@@ -217,7 +217,7 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 					return 'no request found';
 				}
 				catch (\Delight\Auth\TooManyRequestsException $e) {
-					return 'too many requests';
+					return 'troppe richieste';
 				}
 			}
 			else if ($_POST['action'] === 'forgotPassword') {
@@ -239,16 +239,16 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 					return 'ok';
 				}
 				catch (\Delight\Auth\InvalidEmailException $e) {
-					return 'invalid email address';
+					return 'indirizzo email invalido';
 				}
 				catch (\Delight\Auth\EmailNotVerifiedException $e) {
-					return 'email address not verified';
+					return 'indirizzo e-mail non verificatod';
 				}
 				catch (\Delight\Auth\ResetDisabledException $e) {
 					return 'password reset disabled';
 				}
 				catch (\Delight\Auth\TooManyRequestsException $e) {
-					return 'too many requests';
+					return 'troppe richieste';
 				}
 			}
 			else if ($_POST['action'] === 'resetPassword') {
@@ -270,7 +270,7 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 					return 'invalid password';
 				}
 				catch (\Delight\Auth\TooManyRequestsException $e) {
-					return 'too many requests';
+					return 'troppe richieste';
 				}
 			}
 			else if ($_POST['action'] === 'reconfirmPassword') {
@@ -281,7 +281,7 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 					return 'not logged in';
 				}
 				catch (\Delight\Auth\TooManyRequestsException $e) {
-					return 'too many requests';
+					return 'troppe richieste';
 				}
 			}
 			else if ($_POST['action'] === 'changePassword') {
@@ -297,7 +297,7 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 					return 'invalid password(s)';
 				}
 				catch (\Delight\Auth\TooManyRequestsException $e) {
-					return 'too many requests';
+					return 'troppe richieste';
 				}
 			}
 			else if ($_POST['action'] === 'changePasswordWithoutOldPassword') {
@@ -317,7 +317,7 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 				try {
 					$auth->changeEmail($_POST['newEmail'], function ($selector, $token) {
 						echo '<pre>';
-						echo 'Email confirmation';
+						echo 'Verifica email';
 						echo "\n";
 						echo '  >  Selector';
 						echo "\t\t\t\t";
@@ -332,10 +332,10 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 					return 'ok';
 				}
 				catch (\Delight\Auth\InvalidEmailException $e) {
-					return 'invalid email address';
+					return 'indirizzo email invalido';
 				}
 				catch (\Delight\Auth\UserAlreadyExistsException $e) {
-					return 'email address already exists';
+					return 'indirizzo email già registrato';
 				}
 				catch (\Delight\Auth\EmailNotVerifiedException $e) {
 					return 'account not verified';
@@ -344,7 +344,7 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 					return 'not logged in';
 				}
 				catch (\Delight\Auth\TooManyRequestsException $e) {
-					return 'too many requests';
+					return 'troppe richieste';
 				}
 			}
 			else if ($_POST['action'] === 'setPasswordResetEnabled') {
@@ -381,13 +381,13 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 					}
 				}
 				catch (\Delight\Auth\InvalidEmailException $e) {
-					return 'invalid email address';
+					return 'indirizzo email invalido';
 				}
 				catch (\Delight\Auth\InvalidPasswordException $e) {
 					return 'invalid password';
 				}
 				catch (\Delight\Auth\UserAlreadyExistsException $e) {
-					return 'email address already exists';
+					return 'indirizzo email già registrato';
 				}
 				catch (\Delight\Auth\DuplicateUsernameException $e) {
 					return 'username already exists';
@@ -415,10 +415,10 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 						$auth->admin()->deleteUserByUsername($_POST['username']);
 					}
 					catch (\Delight\Auth\UnknownUsernameException $e) {
-						return 'unknown username';
+						return 'username sconosciuto';
 					}
 					catch (\Delight\Auth\AmbiguousUsernameException $e) {
-						return 'ambiguous username';
+						return 'username ambiguo';
 					}
 				}
 				else {
@@ -450,10 +450,10 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 							$auth->admin()->addRoleForUserByUsername($_POST['username'], $_POST['role']);
 						}
 						catch (\Delight\Auth\UnknownUsernameException $e) {
-							return 'unknown username';
+							return 'username sconosciuto';
 						}
 						catch (\Delight\Auth\AmbiguousUsernameException $e) {
-							return 'ambiguous username';
+							return 'username ambiguo';
 						}
 					}
 					else {
@@ -489,10 +489,10 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 							$auth->admin()->removeRoleForUserByUsername($_POST['username'], $_POST['role']);
 						}
 						catch (\Delight\Auth\UnknownUsernameException $e) {
-							return 'unknown username';
+							return 'username sconosciuto';
 						}
 						catch (\Delight\Auth\AmbiguousUsernameException $e) {
-							return 'ambiguous username';
+							return 'username ambiguo';
 						}
 					}
 					else {
@@ -534,7 +534,7 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 						return 'unknown ID';
 					}
 					catch (\Delight\Auth\EmailNotVerifiedException $e) {
-						return 'email address not verified';
+						return 'indirizzo e-mail non verificatod';
 					}
 				}
 				else {
@@ -552,7 +552,7 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 						return 'unknown email address';
 					}
 					catch (\Delight\Auth\EmailNotVerifiedException $e) {
-						return 'email address not verified';
+						return 'indirizzo e-mail non verificatod';
 					}
 				}
 				else {
@@ -567,13 +567,13 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 						return 'ok';
 					}
 					catch (\Delight\Auth\UnknownUsernameException $e) {
-						return 'unknown username';
+						return 'username sconosciuto';
 					}
 					catch (\Delight\Auth\AmbiguousUsernameException $e) {
-						return 'ambiguous username';
+						return 'username ambiguo';
 					}
 					catch (\Delight\Auth\EmailNotVerifiedException $e) {
-						return 'email address not verified';
+						return 'indirizzo e-mail non verificatod';
 					}
 				}
 				else {
@@ -770,8 +770,8 @@ function showGuestUserForm() {
 	echo '<input type="text" name="password" placeholder="Password" /> ';
 	echo '<input type="text" name="username" placeholder="Username (optional)" /> ';
 	echo '<select name="require_verification" size="1">';
-	echo '<option value="0">Require email confirmation? — No</option>';
-	echo '<option value="1">Require email confirmation? — Yes</option>';
+	echo '<option value="0">Require Verifica email? — No</option>';
+	echo '<option value="1">Require Verifica email? — Yes</option>';
 	echo '</select> ';
 	echo '<select name="require_unique_username" size="1">';
 	echo '<option value="0">Username — Any</option>';
