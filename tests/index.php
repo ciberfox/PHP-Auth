@@ -84,7 +84,7 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 					return 'password errata';
 				}
 				catch (\Delight\Auth\EmailNotVerifiedException $e) {
-					return 'indirizzo e-mail non verificatod';
+					return 'indirizzo e-mail non verificato';
 				}
 				catch (\Delight\Auth\TooManyRequestsException $e) {
 					return 'troppe richieste';
@@ -126,16 +126,16 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 					return 'Email non valida';
 				}
 				catch (\Delight\Auth\InvalidPasswordException $e) {
-					return 'passowrd non valida';
+					return 'Passowrd non valida';
 				}
 				catch (\Delight\Auth\UserAlreadyExistsException $e) {
-					return 'email già in uso';
+					return 'Email già in uso';
 				}
 				catch (\Delight\Auth\DuplicateUsernameException $e) {
-					return 'username già in uso';
+					return 'Username già in uso';
 				}
 				catch (\Delight\Auth\TooManyRequestsException $e) {
-					return 'troppe richieste';
+					return 'Troppe richieste';
 				}
 			}
 			else if ($_POST['action'] === 'confirmEmail') {
@@ -242,7 +242,7 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 					return 'indirizzo email invalido';
 				}
 				catch (\Delight\Auth\EmailNotVerifiedException $e) {
-					return 'indirizzo e-mail non verificatod';
+					return 'indirizzo e-mail non verificato';
 				}
 				catch (\Delight\Auth\ResetDisabledException $e) {
 					return 'password reset disabled';
@@ -534,7 +534,7 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 						return 'unknown ID';
 					}
 					catch (\Delight\Auth\EmailNotVerifiedException $e) {
-						return 'indirizzo e-mail non verificatod';
+						return 'indirizzo e-mail non verificato';
 					}
 				}
 				else {
@@ -552,7 +552,7 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 						return 'unknown email address';
 					}
 					catch (\Delight\Auth\EmailNotVerifiedException $e) {
-						return 'indirizzo e-mail non verificatod';
+						return 'indirizzo e-mail non verificato';
 					}
 				}
 				else {
@@ -573,7 +573,7 @@ function processRequestData(\Delight\Auth\Auth $auth) {
 						return 'username ambiguo';
 					}
 					catch (\Delight\Auth\EmailNotVerifiedException $e) {
-						return 'indirizzo e-mail non verificatod';
+						return 'indirizzo e-mail non verificato';
 					}
 				}
 				else {
@@ -686,7 +686,7 @@ function convertStatusToText(\Delight\Auth\Auth $auth) {
 }
 
 function showGeneralForm() {
-	echo '<form action="" method="get" accept-charset="utf-8">';
+	echo '<form action="" meth="get" accept-charset="utf-8">';
 	echo '<button type="submit">Refresh</button>';
 	echo '</form>';
 }
